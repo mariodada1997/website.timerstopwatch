@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#stop_watch").hide();
+            $("#button_type_timer").click(function(){
+            $("#stop_watch").hide();
+            $("#timer").show();
+            });
+            $("#button_type_stop_watch").click(function(){
+            $("#timer").hide();
+            $("#stop_watch").show();
+            });
+        });
+</script>
+
+</head>
+<body class="theme-light">
+
+<div style="text-align:center;">
+    <br>
+    <button id="button_type_timer">Timer</button> 
+    <button id="button_type_stop_watch">Stopwatch</button>
+</div>
+<div>
+    <div class="container">
+        <div id="timer" style="text-align:center;">
+            <h3> Small Ben </h3>
+            Minutes: <input type="number" id="min"> <br>
+            Seconds: <input type="number" id="sec"> <br>
+            <br> Try It!
+            <button id="start-timer">Start Timer</button>
+            <button id="stop-timer">Stop Timer</button>
+            <br> <br> <canvas id="myCanvas" width="300" height="300" style="border:0px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.</canvas>
+        </div>
+        <div id= "stop_watch" style="text-align:center;">
+            <h3> Time Winder </h3>
+            <h1><time>00:00</time></h1>
+            <button id="start">Start</button> 
+            <button id="stop">Stop</button>
+            <button id="clear">Clear</button>
+            <br> <br> <br> 
+            <img src="img/gif-pink-bird.gif" id="1-gif" width="200" height="250"> 
+            <img src="img/image-pink-bird.png" id="1-png" width="100" height="200"> 
+            <img src="img/gif-white-bird.gif" id="2-gif"> 
+            <img src="img/image-white-bird.png" id="2-png"  width="140" height="200">
+    </div>
+</div>
+
+<style>
+body {
+    background-image:url("img/background.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+html {
+    height: 100%
+}
+    .container {
+        width:600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h3 {
+        font-family: "Century Gothic"; 
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 420%;
+    }
+    button {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 150%;
+    }
+    canvas{
+    opacity:0.8;
+    background:transparent;
+}
+
+#stop {
+    -moz-box-shadow:inset 0px 0px 0px 0px #01ff73;
+    -webkit-box-shadow:inset 0px 0px 0px 0px #01ff73;
+    box-shadow:inset 0px 0px 0px 0px #01ff73;
+    background-color:#ff4343;
+    -moz-border-radius:12px;
+    -webkit-border-radius:12px;
+    border-radius:12px;
+    border:4px solid #01ff73;
+    display:inline-block;
+    cursor:pointer;
+    color:#01ff73;
+    font-family:Arial;
+    font-size:17px;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 0px 0px #01ff73;
+}
+#stop:hover {
+    background-color:#fc6a6a;
+}
+#stop:active {
+    position:relative;
+    top:1px;
+}
+#start{
+    -moz-box-shadow:inset 0px 0px 0px 0px #ed7c31;
+    -webkit-box-shadow:inset 0px 0px 0px 0px #ed7c31;
+    box-shadow:inset 0px 0px 0px 0px #ed7c31;
+    background-color:#307bc2;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:12px;
+    border:4px solid #ed7c31;
+    display:inline-block;
+    cursor:pointer;
+    color:#ed7c31;
+    font-family:Arial;
+    font-size:17px;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 0px 0px #ed7c31;
+}
+#start:hover {
+    background-color:#1c84e6;
+}
+#start:active {
+    position:relative;
+    top:1px;
+}
+#clear {
+    -moz-box-shadow:inset 0px 0px 0px 0px #ffff33;
+    -webkit-box-shadow:inset 0px 0px 0px 0px #ffff33;
+    box-shadow:inset 0px 0px 0px 0px #ffff33;
+    background-color:#6f30a0;
+    -moz-border-radius:12px;
+    -webkit-border-radius:12px;
+    border-radius:12px;
+    border:4px solid #ffff33;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffff33;
+    font-family:Arial;
+    font-size:17px;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 0px 0px #ffff33;
+}
+#clear:hover {
+    background-color:#9a68c4;
+}
+#clear:active {
+    position:relative;
+    top:1px;
+}
+
+</style>
+
+<script>
+    $(document).ready(function(){
+        $("#stop-timer").hide();
+        var secInput = 0;
+        var minInput = 0;
+        var secondsColor="#1E88E5";
+        var minutesColor="#1565C0";
+        var minutes=3.5;
+        var seconds=3.5-(2/60)*secInput;
+        var prevMinutes=3.5;
+        var prevSeconds=3.5-(2/60)*secInput;
+        var runningTime=0;
+        var Interval_clock;
+        function update_clock(){
+            runningTime++;
+            var c=document.getElementById("myCanvas");
+            var ctx=c.getContext("2d");
+            ctx.fillRect(0,0,300,300);
+            ctx.fillStyle="white";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.strokeStyle=secondsColor;
+            ctx.arc(150, 150, 120, 1.5 * Math.PI, seconds * Math.PI);
+            ctx.lineWidth=50;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle=minutesColor;
+            ctx.arc(150, 150, 72, 1.5 * Math.PI, minutes * Math.PI);
+            ctx.lineWidth=50;
+            ctx.stroke();
+
+            seconds = prevSeconds-((2/60)/100);
+            minutes = prevMinutes-( (2 / (+secInput + +(minInput * 60) ) ) / 100);
+            if(seconds <= 1.5){
+                seconds=3.5;
+            }
+            if(minutes <= 1.5+( (2 / (+secInput + +(minInput * 60) ) ) * 10) ){
+                secondsColor="#F44336";
+                minutesColor="#D32F2F";
+            }
+            if(minutes < 1.5){
+                clearInterval(Interval_clock);
+            }
+            prevMinutes = minutes;
+            prevSeconds = seconds;
+            $("p").text(minutes);
+        }
+        $('#start-timer').click(function(){
+            minInput=$('#min').val();
+            secInput=$('#sec').val();
+            secondsColor="#1E88E5";
+            minutesColor="#1565C0";
+            minutes=3.5;
+            seconds=3.5-(2/60)*(60-secInput);
+            prevMinutes=3.5;
+            prevSeconds=3.5-(2/60)*(60-secInput);
+            runningTime=0;
+            Interval_clock = setInterval(update_clock,10);
+        });
+        $('#stop-timer').click(function(){
+            minInput=0;
+            secInput=0;
+            clearInterval(Interval_clock);
+        });
+        $('#start-timer').click(function(){
+            $("#start-timer").hide();
+            $("#stop-timer").show();
+        });
+        $('#stop-timer').click(function(){
+            $("#stop-timer").hide();
+            $("#start-timer").show();
+        });
+
+    });
+</script>
+
+<script>
+var h1 = document.getElementsByTagName('h1')[0],
+    start = document.getElementById('start'),
+    stop = document.getElementById('stop'),
+    clear = document.getElementById('clear'),
+    seconds = 0, minutes = 0, 
+    t;
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+    }
+    h1.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
+start.onclick = timer;
+stop.onclick = function() {
+    clearTimeout(t);
+}
+clear.onclick = function() {
+    h1.textContent = "00:00";
+    seconds = 0; minutes = 0;
+}
+
+$(document).ready(function(){
+            $("#stop").hide();
+            $("#1-gif").hide();
+            $("#2-gif").hide();
+            $("#start").click(function(){
+            $("#start").hide();
+            $("#stop").show();
+            $("#clear").show();
+            $("#2-gif").show();
+            $("#2-png").hide();
+            $("#1-gif").show();
+            $("#1-png").hide();
+            });
+            $("#stop").click(function(){
+            $("#stop").hide();
+            $("#start").show();
+            $("#clear").show();
+            $("#2-png").show();
+            $("#2-gif").hide();
+            $("#1-png").show();
+            $("#1-gif").hide();
+            });
+            $("#clear").click(function(){
+            $("#start").show();
+            $("#stop").hide();
+            $("#clear").show(); 
+            });
+
+        });
+</script>
+
+</body>
+</html>
